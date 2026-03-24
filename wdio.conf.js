@@ -20,8 +20,7 @@ exports.config = {
             'goog:chromeOptions': {
 
                 args: [
-                    '--headless',
-                    '--disable-gpu',
+                    ...(headless ? ['--headless', '--disable-gpu'] : []),
                     '--window-size=1920,1080',
                     '--disable-gpu',
                     '--no-sandbox',
