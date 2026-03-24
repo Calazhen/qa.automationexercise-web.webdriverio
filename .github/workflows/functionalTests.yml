@@ -2,7 +2,7 @@ name: WDIO E2E Tests
 
 on:
   push:
-    branches: [main, master]
+    branches: [master]
 
 jobs:
   e2e-tests:
@@ -18,17 +18,10 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm i
-
-      - name: Install Google Chrome
-        run: |
-          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-          sudo apt update
-          sudo apt install -y google-chrome-stable
+        run: npm i &&   npm audit fix --force
 
       - name: Run WebdriverIO tests
-        run: npx wdio run wdio.conf.js --suite features
+        run: npm run wdio --features
 
       - name: Generate Allure Report
         run: |
