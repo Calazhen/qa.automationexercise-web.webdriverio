@@ -22,7 +22,7 @@ jobs:
           node-version: 22
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm i
 
       - name: Run E2E Tests
         run: npx wdio run ./wdio.conf.ts --shard=${{ matrix.shard }}/4
