@@ -20,9 +20,6 @@ jobs:
       - name: Install dependencies
         run: npm i
 
-      - name: Npm audit fix
-        run: npm audit fix --force
-
       - name: Run WebdriverIO tests
         run: npm run wdio  
 
