@@ -1,6 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
+// 🔹 Adicione isto no topo do arquivo
+const headless = process.env.HEADLESS === 'true';
+
 exports.config = {
     runner: 'local',
 
@@ -18,15 +21,12 @@ exports.config = {
         {
             browserName: 'chrome',
             'goog:chromeOptions': {
-
                 args: [
                     ...(headless ? ['--headless', '--disable-gpu'] : []),
                     '--window-size=1920,1080',
-                    '--disable-gpu',
                     '--no-sandbox',
                     '--disable-dev-shm-usage'
                 ],
-
                 prefs: {
                     'credentials_enable_service': false,
                     'profile.password_manager_enabled': false,
@@ -38,15 +38,10 @@ exports.config = {
     ],
 
     logLevel: 'info',
-
     bail: 0,
-
     waitforTimeout: 10000,
-
     connectionRetryTimeout: 120000,
-
     connectionRetryCount: 3,
-
     framework: 'mocha',
 
     reporters: [
@@ -64,18 +59,10 @@ exports.config = {
     },
 
     suites: {
-        smoke: [
-            './test/specs/smoke/*.js'
-        ],
-        regression: [
-            './test/specs/regression/*.js'
-        ],
-        features: [
-            './test/specs/features/registrarUmUsuario.test.js'
-        ],
-        api: [
-            './test/specs/api/*.js'
-        ]
+        smoke: ['./test/specs/smoke/*.js'],
+        regression: ['./test/specs/regression/*.js'],
+        features: ['./test/specs/features/registrarUmUsuario.test.js'],
+        api: ['./test/specs/api/*.js']
     },
 
     afterTest: async function (test, context, { error }) {
