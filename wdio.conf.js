@@ -1,3 +1,6 @@
+const fs = require('fs');
+const path = require('path');
+
 exports.config = {
     runner: 'local',
 
@@ -15,12 +18,16 @@ exports.config = {
         {
             browserName: 'chrome',
             'goog:chromeOptions': {
+
                 args: [
-                    '--headless=new',
+                    '--headless',
+                    '--disable-gpu',
+                    '--window-size=1920,1080',
                     '--disable-gpu',
                     '--no-sandbox',
                     '--disable-dev-shm-usage'
                 ],
+
                 prefs: {
                     'credentials_enable_service': false,
                     'profile.password_manager_enabled': false,
@@ -57,7 +64,6 @@ exports.config = {
         timeout: 60000
     },
 
-    // Suites configuradas
     suites: {
         smoke: [
             './test/specs/smoke/*.js'
@@ -78,4 +84,4 @@ exports.config = {
             await browser.takeScreenshot();
         }
     }
-}
+};
