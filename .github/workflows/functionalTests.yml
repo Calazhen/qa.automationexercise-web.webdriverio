@@ -2,7 +2,7 @@ name: WDIO CI
 
 on:
   push:
-    branches: [main]
+    branches: [master]
 
 jobs:
   e2e:
