@@ -39,7 +39,6 @@ describe('User story 02 - Excluir conta de usuário padrão', () => {
         await HomePage.deleteAccount()
         
         //Assert
-        await browser.pause(3000);
         await expect(HomePage.accountDeletedMessage).toBeDisplayed()
         await expect(HomePage.btnContinue).toBeDisplayed()
     })
