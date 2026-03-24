@@ -8,17 +8,6 @@ jobs:
   e2e-tests:
     runs-on: ubuntu-latest
 
-    services:
-      chrome:
-        image: selenium/standalone-chrome:latest
-        options: >-
-          --health-cmd "curl -f http://localhost:4444/wd/hub/status || exit 1"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 3
-        ports:
-          - 4444:4444
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -30,6 +19,13 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Install Google Chrome
+        run: |
+          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+          sudo apt update
+          sudo apt install -y google-chrome-stable
 
       - name: Run WebdriverIO tests
         run: npx wdio run wdio.conf.js
