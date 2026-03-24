@@ -30,13 +30,13 @@ class HomePage {
         await this.btnSignupLogin.waitForDisplayed();
         await this.btnSignupLogin.click();
     }
-
+    // del
     async deleteAccount () {
-        const isDeleteVisible = await this.btnDeleteAccount.isDisplayed();
+        /*const isDeleteVisible = await this.btnDeleteAccount.isDisplayed();
         if (!isDeleteVisible) {
             throw new Error('Delete Account button is not visible in the current page state.');
-        }
-
+        }*/
+        await this.btnDeleteAccount.isDisplayed();
         await this.btnDeleteAccount.waitForDisplayed({ timeout: 20000 });
         await this.btnDeleteAccount.scrollIntoView();
         await this.btnDeleteAccount.waitForClickable({ timeout: 20000 });

@@ -21,7 +21,7 @@ jobs:
         run: npm i
 
       - name: Run WebdriverIO tests
-        run: HEADLESS=true npm run wdio
+        run: npm run wdio --features
 
       - name: Generate Allure Report
         if: always()

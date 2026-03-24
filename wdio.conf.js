@@ -1,8 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-// 🔹 Adicione isto no topo do arquivo
-const headless = process.env.HEADLESS === 'true';
 
 exports.config = {
     runner: 'local',
@@ -22,7 +20,8 @@ exports.config = {
             browserName: 'chrome',
             'goog:chromeOptions': {
                 args: [
-                    ...(headless ? ['--headless', '--disable-gpu'] : []),
+                    '--headless',
+                    '--disable-gpu',
                     '--window-size=1920,1080',
                     '--no-sandbox',
                     '--disable-dev-shm-usage'
