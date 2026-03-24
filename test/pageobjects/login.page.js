@@ -2,40 +2,20 @@ const { $, browser } = require('@wdio/globals')
 
 class LoginPage {
   
-    get inputName () {
-        return $('input[data-qa="signup-name"]');
-    }
+    //Métodos get  para acessar os seletores
+    get btnSignupLogin () { return $('a[href="/login"]'); }
+    get btnDeleteAccount () { return $('a[href="/delete_account"]'); }
+    get accountDeletedMessage () { $('.dismiss-button').click(); return $('h2[data-qa="account-deleted"]'); }
+    get btnContinue () { return $('a[data-qa="continue-button"]'); }
+    get loggedInAsUser () { return $('//a[contains(.,"Logged in as")]'); }
 
-    get inputEmailAddress () {
-        return $('input[data-qa="signup-email"]');
-    }
-
-    get btnSignUp () {
-        return $('button[data-qa="signup-button"]');
-    }
-
-    get inputLoginEmail () {
-        return $('input[data-qa="login-email"]');
-    }
-
-    get inputLoginPassword () {
-        return $('input[data-qa="login-password"]');
-    }
-
-    get btnLogin () {
-        return $('button[data-qa="login-button"]');
-    }
-
-
+    // Método para ingressar na pagina de registro de usuário (com username e e-mail)
     async newUserSignUp (username, emailAddress) {
         await this.inputName.setValue(username);
         await this.inputEmailAddress.setValue(emailAddress);
         await this.btnSignUp.click();
     }
 
-    open () {
-        return browser.url('/login');
-    }
 }
 
 module.exports = new LoginPage();

@@ -2,6 +2,8 @@ const { $ } = require('@wdio/globals');
 
 
 class RegisterPage {
+
+    //Métodos get  para acessar os seletores
     get inputSignupName () { return $('input[data-qa="signup-name"]'); }
     get inputSignupEmail () { return $('input[data-qa="signup-email"]'); }
     get btnSignup () { return $('button[data-qa="signup-button"]'); }
@@ -26,6 +28,7 @@ class RegisterPage {
     get accountCreatedMessage () { return $('h2[data-qa="account-created"]'); }
     get btnContinue () { return $('a[data-qa="continue-button"]'); }
 
+    // Começa o processo de registro de usuário
     async startSignup (name, email) {
         await this.inputSignupName.waitForDisplayed();
         await this.inputSignupName.setValue(name);
@@ -33,6 +36,7 @@ class RegisterPage {
         await this.btnSignup.click();
     }
 
+    // Preenche dados pessoais
     async fillAccountDetails ({ password, day, month, year }) {
         await this.radioTitleMr.waitForDisplayed();
         await this.radioTitleMr.click();
@@ -42,11 +46,13 @@ class RegisterPage {
         await this.selectYears.selectByVisibleText(year);
     }
 
+    // Marca o campo para receber Newsletters (novas atualizações)
     async enableNewsletters () {
         await this.checkNewsletter.click();
         await this.checkOptin.click();
     }
 
+    // Preenche formulário de Registro de usuário
     async fillFormDetails(user) {
         await this.inputFirstName.setValue(user.firstName);
         await this.inputLastName.setValue(user.lastName);
@@ -60,11 +66,14 @@ class RegisterPage {
         await this.inputMobileNumber.setValue(user.mobileNumber);
     }
 
+
+    // Clilca no botão para criar conta
     async createAccount () {
         await this.btnCreateAccount.click();
         await this.accountCreatedMessage.waitForDisplayed();
     }
 
+    //Clica no botão continuar após criar a conta.
     async continueAfterCreation () {
         await this.btnContinue.waitForDisplayed();
         await this.btnContinue.scrollIntoView();

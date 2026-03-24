@@ -1,41 +1,26 @@
 const { $, browser } = require('@wdio/globals');
 
 class HomePage {
-    get btnSignupLogin () {
-        return $('a[href="/login"]');
-    }
 
-    get btnDeleteAccount () {
-        return $('a[href="/delete_account"]');
-    }
+    //Métodos acessores aos seletores
+    get btnSignupLogin () { return $('a[href="/login"]'); }
+    get btnDeleteAccount () { return $('a[href="/delete_account"]'); }
+    get accountDeletedMessage () { $('.dismiss-button').click(); return $('h2[data-qa="account-deleted"]'); }
+    get btnContinue () { return $('a[data-qa="continue-button"]'); }
+    get loggedInAsUser () { return $('//a[contains(.,"Logged in as")]'); }
 
-    get accountDeletedMessage () {
-        $('.dismiss-button').click();
-        return $('h2[data-qa="account-deleted"]');
-    }
-
-    get btnContinue () {
-        return $('a[data-qa="continue-button"]');
-    }
-
-    get loggedInAsUser () {
-        return $('//a[contains(.,"Logged in as")]');
-    }
-
+    // Método para abrir o browser na página definida como BaseUrl
     open () {
         return  browser.url("/")
     }
 
+    // Navega até a página de Cadastro e login 
     async goToSignupLogin () {
         await this.btnSignupLogin.waitForDisplayed();
         await this.btnSignupLogin.click();
     }
-    // del
+    // Clica no botão para excluir a conta recém criada.
     async deleteAccount () {
-        /*const isDeleteVisible = await this.btnDeleteAccount.isDisplayed();
-        if (!isDeleteVisible) {
-            throw new Error('Delete Account button is not visible in the current page state.');
-        }*/
         await this.btnDeleteAccount.isDisplayed();
         await this.btnDeleteAccount.waitForDisplayed({ timeout: 20000 });
         await this.btnDeleteAccount.scrollIntoView();
