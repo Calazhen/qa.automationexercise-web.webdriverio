@@ -1,0 +1,2 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","13618","should register a new user and delete account successfully","User story 02 - Excluir conta de usuário padrão","2026-03-24","passed","2026-03-24","","","",""
