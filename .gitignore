@@ -1,0 +1,23 @@
+# Node e packages
+node_modules/
+package-lock.json
+
+# Allure
+allure-results/
+allure-report/
+
+# Logs
+*.log
+logs/
+
+# WDIO
+wdio-logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.*
+!.env.example
